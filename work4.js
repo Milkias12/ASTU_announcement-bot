@@ -2,6 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const {Post, Department, School, Category } = require('../back/models/schema')
 const TOKEN='6296741047:AAG0I8v8quocr9Ja5T85suavIfKFGpnNpfs';
 const bot = new TelegramBot(TOKEN, {polling: true});
+process.env.NTBA_FIX_319 = 1;
 
 bot.on('message', async (msg) => {
 
@@ -358,7 +359,7 @@ bot.on('message', async (msg) => {
                   }
                 };
               
-                await bot.sendMessage(chatId, `Welcome Back No post Found`, options);
+                await bot.sendMessage(chatId, `No post Found`, options);
                 await bot.sendPhoto(chatId, 'b.png');
               }
         
@@ -380,7 +381,7 @@ bot.on('message', async (msg) => {
                 });
         
                 if (!posts || !posts.length) {
-                  break;
+                  break; 
                 }
         
                 await bot.sendMessage(chatId, 'Click the button below to retrieve the next 5 posts', {
